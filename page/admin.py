@@ -1,21 +1,28 @@
 from django.contrib import admin
-from .models import Page
+from .models import Page, Courusel
 
-
-class PageModify(admin.ModelAdmin):
-    prepopulated_fields = {"slug": ("title",)}
-    list_display = (
-        'pk',
+class AdminPage(admin.ModelAdmin):
+    class Meta:
+        model=Page
+    prepopulated_fields = {'slug' : ('title',)}
+    list_display =[
         'title',
-        'slug',
-        'status', 
+        'status',
         'updated_at',
-    )
-    list_filter = ('status', )
-    list_editable = (
-        'title',
-        'status', 
-    )
+    ]
+
+    list_filter = [
+        'status',
+    ]
+
+    
+        # list_editable [
+        #     'status',
+        #     'title',
+        # ]
+        
+    
 
 
-admin.site.register(Page, PageModify)
+admin.site.register(Page,AdminPage)
+admin.site.register(Courusel)

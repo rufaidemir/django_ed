@@ -1,29 +1,34 @@
 from django.db import models
 
+DEFAULT_STATUS= 'draft'
 STATUS = [
-    # left side: DB
-    # right side: human-readable name
-    ('draft', 'Taslak'),
-    ('published', 'Yayinlandi'),
-    ('deleted', 'Silindi'),
+    ('draft','taslak'),
+    ('published','yayinlandi'),
+    ('deleted', 'silindi'),
 ]
 
 class Page(models.Model):
-    title = models.CharField(max_length=200)
-    slug = models.SlugField(
-        max_length=200, 
-        default="",
-    )
-    content = models.TextField() 
-    cover_image = models.ImageField(
-        upload_to='page',
-        null=True,
-        blank=True,
-    )
-    status = models.CharField(
-        default="draft", 
-        choices=STATUS,
-        max_length=10,
-    )
-    createt_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+    title = models.CharField(max_length = 75)
+    content = models.TextField()
+    slug = models.SlugField(default='', max_length=80)
+    cover_image = models.ImageField(blank=True,upload_to='page')
+    status = models.TextField(choices=STATUS, default= DEFAULT_STATUS)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at =models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.title
+
+
+class Courusel(models.Model):
+    title = models.CharField(max_length = 100, blank =True, null =True)
+    cover_image = models.ImageField(blank=True,upload_to='couresel')
+    status = models.TextField(choices=STATUS, default= DEFAULT_STATUS)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at =models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.title
+    
+
+    
