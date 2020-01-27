@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # Third Party Apps:
+    'crispy_forms',
+    
 
     # My Apps:
     'cart',
@@ -136,6 +138,11 @@ STATICFILES_DIRS = [
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+if os.environ.get('DJANGO_DEBUG')==True:
+    INSTALLED_APPS+=  ['django-extensions',]
 # Trello: TO_DO Plugin Test
 
 # python manage.py startapp cart

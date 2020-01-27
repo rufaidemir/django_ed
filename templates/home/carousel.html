@@ -1,12 +1,18 @@
 {% load static %}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
     <div class="carousel-inner">
-
+    
+      <!-- Carusel items shows here -->
     {% for item in carusel_list %}
-      <div class="carousel-item {% if forloop.counter0 == 0 %}active{% endif %} ">
-        <img src="{{ item.cover_image.url }}" class="d-block w-100" alt="...">
-      </div>
+      {% if item.cover_image %}
+        <div class="carousel-item {% if forloop.counter0 == 0 %}active{% endif %} ">
+          <img src="{{ item.cover_image.url }}" class="d-block w-100" alt="...">
+        </div>
+      {% endif %}
     {% endfor %}
+
+    
   
     <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
