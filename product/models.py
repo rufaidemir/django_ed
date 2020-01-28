@@ -1,12 +1,32 @@
 from django.db import models
 from page.models import STATUS, DEFAULT_STATUS
+GENDER_CHOICE = [
+    ('man','Erkek'),
+    ('women','Kadin'),
+    ('unisex','UniSex'),
+]
 
 class Category(models.Model):
     title = models.CharField(max_length = 150)
-    slug = models.SlugField(default='', max_length=175)
-    status = models.TextField(choices=STATUS, default= DEFAULT_STATUS)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at =models.DateTimeField(auto_now=True)
+    gender = models.CharField(
+        default = 'unisex',
+        choices =GENDER_CHOICE,
+        max_length = 6
+        
+        )
+    slug = models.SlugField(
+        default='',
+        max_length=175)
+    status = models.TextField(
+        choices=STATUS,
+        default= DEFAULT_STATUS
+        )
+    created_at = models.DateTimeField(
+        auto_now_add=True
+        )
+    updated_at =models.DateTimeField(
+        auto_now=True
+        )
 
     def __str__(self):
         return self.title

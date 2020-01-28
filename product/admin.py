@@ -7,6 +7,7 @@ class CategoryAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug' : ('title',)}
     list_display =[
         'title',
+        'gender',
         'status',
         'updated_at',
     ]
